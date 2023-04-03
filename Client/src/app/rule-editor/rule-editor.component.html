@@ -1,0 +1,7 @@
+<div>
+  <button (click)="addRule()">Add Rule</button>
+</div>
+
+<div *ngFor="let rule of rules">
+  <app-rule [rule]="rule" (delete)="deleteRule($event)" (save)="saveRule($event)"></app-rule>
+</div>
