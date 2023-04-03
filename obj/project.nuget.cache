@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Fcv5fEih6RtHcJjhGWby7yq0z4h6I4PhtFG98HMjf9WJjbyyi8+HRijU+ZUPznhpw6n+AX8HmhnztNcWxP7OaQ==",
+  "dgSpecHash": "LbBdjuWwy1u0bunMKWJKKCEn4WEX8RXmrnGA44g+oR/RJQmjpKPHfyKOv+L1x3+Axex3wD5RRqVhJJUJTUTN9Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\Kirill\\source\\repos\\RulesEditor\\RulesEditor.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Kirill\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Kirill\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Kirill\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.4\\microsoft.aspnetcore.authentication.jwtbearer.7.0.4.nupkg.sha512",
     "C:\\Users\\Kirill\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.4\\microsoft.aspnetcore.openapi.7.0.4.nupkg.sha512",

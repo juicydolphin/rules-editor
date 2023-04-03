@@ -6,10 +6,6 @@ namespace RulesEditor.DataContext;
 
 public partial class RulesEditorContext : DbContext
 {
-    public RulesEditorContext()
-    {
-    }
-
     public RulesEditorContext(DbContextOptions<RulesEditorContext> options)
         : base(options)
     {
