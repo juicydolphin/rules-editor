@@ -1,0 +1,53 @@
+<div>
+  <label>Select rule type:</label>
+  <select [(ngModel)]="ruleType">
+    <option value="addDays">Add Days</option>
+    <option value="compareDates">Compare Dates</option>
+    <option value="daysBetweenDates">Days Between Dates</option>
+    <option value="isLeapYear">Is Leap Year</option>
+    <option value="getWeekDay">Get Weekday</option>
+  </select>
+</div>
+
+<div *ngIf="ruleType === 'addDays'">
+  <h2>Add Days</h2>
+  <label>Date:</label>
+  <input type="text" [(ngModel)]="dateRule.Date" placeholder="YYYY-MM-DD">
+  <br>
+  <label>Days:</label>
+  <input type="number" [(ngModel)]="dateRule.Days" placeholder="0">
+</div>
+
+<div *ngIf="ruleType === 'compareDates'">
+  <h2>Compare Dates</h2>
+  <label>Date 1:</label>
+  <input type="text" [(ngModel)]="dateComparisonRule.Date1" placeholder="YYYY-MM-DD">
+  <br>
+  <label>Date 2:</label>
+  <input type="text" [(ngModel)]="dateComparisonRule.Date2" placeholder="YYYY-MM-DD">
+</div>
+
+<div *ngIf="ruleType === 'daysBetweenDates'">
+  <h2>Days Between Dates</h2>
+  <label>Date 1:</label>
+  <input type="text" [(ngModel)]="dateComparisonRule.Date1" placeholder="YYYY-MM-DD">
+  <br>
+  <label>Date 2:</label>
+  <input type="text" [(ngModel)]="dateComparisonRule.Date2" placeholder="YYYY-MM-DD">
+</div>
+
+<div *ngIf="ruleType === 'isLeapYear'">
+  <h2>Is Leap Year</h2>
+  <label>Year:</label>
+  <input type="number" [(ngModel)]="intRule.Value" placeholder="0">
+</div>
+
+<div *ngIf="ruleType === 'getWeekDay'">
+  <h2>Get Weekday</h2>
+  <label>Date:</label>
+  <input type="text" [(ngModel)]="dateRule.Date" placeholder="YYYY-MM-DD">
+</div>
+
+<button (click)="onSubmit()">Submit</button>
+
+<div *ngIf="result">{{ result }}</div>

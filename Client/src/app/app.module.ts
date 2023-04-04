@@ -14,8 +14,9 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import {RegisterComponent} from "./register/register.component";
 import {LogoutComponent} from "./logout/logout.component";
-import {RuleEditorComponent} from "./rule-editor/rule-editor.component";
-import {RuleComponent} from "./rule/rule.component";
+import {MathRulesComponent} from "./math-rules/math-rules.component";
+import {TextRulesComponent} from "./text-rules/text-rules.component";
+import {DateRulesComponent} from "./date-rules/date-rules.component";
 
 
 @NgModule({
@@ -24,8 +25,9 @@ import {RuleComponent} from "./rule/rule.component";
     LoginComponent,
     RegisterComponent,
     LogoutComponent,
-    RuleEditorComponent,
-    RuleComponent
+    MathRulesComponent,
+    TextRulesComponent,
+    DateRulesComponent
   ],
   imports: [
     AppRoutingModule,

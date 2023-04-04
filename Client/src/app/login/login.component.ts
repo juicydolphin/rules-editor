@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.auth.loggedIn) {
-      this.router.navigate(['/rules-editor']);
+      this.router.navigate(['/math-rules']);
     }
   }
 

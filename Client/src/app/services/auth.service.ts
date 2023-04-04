@@ -31,7 +31,7 @@ export class AuthService {
         console.log(decodedUser)
         this.setCurrentUser(decodedUser);
         this.loggedIn = true;
-        this.router.navigate(['/rules-editor']);
+        this.router.navigate(['/math-rules']);
       },
       error: error => this.toast.setMessage('Неверный логин или пароль!', 'danger')
     });

@@ -49,3 +49,9 @@ C:\Users\Kirill\source\repos\RulesEditor\bin\Debug\net7.0\Microsoft.IdentityMode
 C:\Users\Kirill\source\repos\RulesEditor\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Kirill\source\repos\RulesEditor\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\Kirill\source\repos\RulesEditor\bin\Debug\net7.0\BCrypt.Net-Next.dll
+C:\Users\Kirill\source\repos\RulesEditor\bin\Debug\net7.0\Client\angular.json
+C:\Users\Kirill\source\repos\RulesEditor\bin\Debug\net7.0\Client\package-lock.json
+C:\Users\Kirill\source\repos\RulesEditor\bin\Debug\net7.0\Client\package.json
+C:\Users\Kirill\source\repos\RulesEditor\bin\Debug\net7.0\Client\tsconfig.app.json
+C:\Users\Kirill\source\repos\RulesEditor\bin\Debug\net7.0\Client\tsconfig.json
+C:\Users\Kirill\source\repos\RulesEditor\bin\Debug\net7.0\Client\tsconfig.spec.json

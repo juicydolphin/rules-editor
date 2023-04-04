@@ -1,0 +1,35 @@
+<div>
+  <label for="ruleType">Rule Type:</label>
+  <select id="ruleType" name="ruleType" [(ngModel)]="ruleType">
+    <option value="substring">Substring</option>
+    <option value="tolower">ToLower</option>
+    <option value="toupper">ToUpper</option>
+    <option value="replace">Replace</option>
+  </select>
+
+  <label for="originalString">Original String:</label>
+  <input type="text" id="originalString" name="originalString" [(ngModel)]="originalString">
+
+  <div *ngIf="ruleType === 'substring'">
+    <label for="startIndex">Start Index:</label>
+    <input type="number" id="startIndex" name="startIndex" [(ngModel)]="startIndex">
+
+    <label for="length">Length:</label>
+    <input type="number" id="length" name="length" [(ngModel)]="length">
+  </div>
+
+
+  <div *ngIf="ruleType === 'replace'">
+    <label for="oldValue">Old Value:</label>
+    <input type="text" id="oldValue" name="oldValue" [(ngModel)]="oldValue">
+
+    <label for="newValue">New Value:</label>
+    <input type="text" id="newValue" name="newValue" [(ngModel)]="newValue">
+  </div>
+
+  <button (click)="onSubmit()">Submit</button>
+
+  <div *ngIf="result !== null">
+    <p>Result: {{ result }}</p>
+  </div>
+</div>

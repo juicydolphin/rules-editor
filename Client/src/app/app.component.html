@@ -17,6 +17,19 @@
           <a routerLink="/register" class="nav-link" routerLinkActive="active" *ngIf="!auth.loggedIn">
             <i class="fa fa-user-plus"></i> Регистрация
           </a>
+        </li>  <li class="nav-item">
+          <a routerLink="/math-rules" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
+            <i class="fa fa-user-plus"></i> Математические правила
+          </a>
+        </li>  <li class="nav-item">
+          <a routerLink="/text-rules" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
+            <i class="fa fa-user-plus"></i> Текстовые правила
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/date-rules" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
+            <i class="fa fa-user-plus"></i> Правила с датами
+          </a>
         </li>
         <li class="nav-item">
           <a routerLink="/logout" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
