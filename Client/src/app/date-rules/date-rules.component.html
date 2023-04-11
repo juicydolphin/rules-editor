@@ -1,53 +1,118 @@
-<div>
-  <label>Select rule type:</label>
-  <select [(ngModel)]="ruleType">
-    <option value="addDays">Add Days</option>
-    <option value="compareDates">Compare Dates</option>
-    <option value="daysBetweenDates">Days Between Dates</option>
-    <option value="isLeapYear">Is Leap Year</option>
-    <option value="getWeekDay">Get Weekday</option>
-  </select>
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-sm-6">
+      <form #myForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+        <div class="form-group">
+          <label for="ruleType">Тип правила:</label>
+          <select class="form-control" [(ngModel)]="ruleType" name="ruleType" id="ruleType" required>
+            <option value="" disabled>Выберите тип правила</option>
+            <option value="addDays">Добавить дни</option>
+            <option value="compareDates">Сравнить даты</option>
+            <option value="daysBetweenDates">Количество дней между датами</option>
+            <option value="isLeapYear">Високосный год</option>
+            <option value="getWeekDay">День недели</option>
+          </select>
+          <div *ngIf="myForm.submitted && myForm.controls.ruleType.errors?.required" class="invalid-feedback d-block">
+            Тип правила обязателен для заполнения.
+          </div>
+        </div>
+
+        <div *ngIf="ruleType === 'addDays'" class="form-group">
+
+          <label for="date">Дата:</label>
+          <input type="text" class="form-control" [(ngModel)]="dateRule.Date" name="date" id="date"
+                 placeholder="YYYY-MM-DD" required pattern="^\d{4}-\d{2}-\d{2}$">
+          <div *ngIf="myForm.submitted && myForm.controls.date.errors?.required" class="invalid-feedback d-block">
+            Поле обязательно для заполнения.
+          </div>
+          <div *ngIf="myForm.submitted && myForm.controls.date.errors?.pattern" class="invalid-feedback d-block">
+            Неверный формат даты. Пожалуйста используйте формат YYYY-MM-DD.
+
+          </div>
+
+          <label for="days">Дни:</label>
+          <input type="number" class="form-control" [(ngModel)]="dateRule.Days" name="days" id="days" placeholder="0"
+                 required min="0">
+          <div *ngIf="myForm.submitted && myForm.controls.days.errors?.required" class="invalid-feedback d-block">
+            Поле обязательно для заполнения.
+          </div>
+          <div *ngIf="myForm.submitted && myForm.controls.days.errors?.min" class="invalid-feedback d-block">
+            Значение не может быть отрицательным.
+          </div>
+        </div>
+
+        <div *ngIf="ruleType === 'compareDates'" class="form-group">
+
+          <label for="date1">Дата 1:</label>
+          <input type="text" class="form-control" [(ngModel)]="dateComparisonRule.Date1" name="date1" id="date1"
+                 placeholder="YYYY-MM-DD" required pattern="^\d{4}-\d{2}-\d{2}$">
+          <div *ngIf="myForm.submitted && myForm.controls.date1.errors?.required" class="invalid-feedback d-block">
+            Поле обязательно для заполнения.
+          </div>
+          <div *ngIf="myForm.submitted && myForm.controls.date1.errors?.pattern" class="invalid-feedback d-block">
+            Неверный формат даты. Пожалуйста используйте формат YYYY-MM-DD.
+          </div>
+
+          <label for="date2">Дата 2:</label>
+          <input type="text" class="form-control" [(ngModel)]="dateComparisonRule.Date2" name="date2" id="date2"
+                 placeholder="YYYY-MM-DD" required pattern="^\d{4}-\d{2}-\d{2}$">
+          <div *ngIf="myForm.submitted && myForm.controls.date2.errors?.required" class="invalid-feedback d-block">
+            Поле обязательно для заполнения.
+          </div>
+          <div *ngIf="myForm.submitted && myForm.controls.date2.errors?.pattern" class="invalid-feedback d-block">
+            Неверный формат даты. Пожалуйста используйте формат YYYY-MM-DD.
+          </div>
+        </div>
+
+        <div *ngIf="ruleType === 'daysBetweenDates'" class="form-group">
+
+          <label for="date1">Дата 1:</label>
+          <input type="text" class="form-control" [(ngModel)]="dateComparisonRule.Date1" name="date1" id="date3"
+                 placeholder="YYYY-MM-DD" required pattern="^\d{4}-\d{2}-\d{2}$">
+          <div *ngIf="myForm.submitted && myForm.controls.date1.errors?.required" class="invalid-feedback d-block">
+            Поле обязательно для заполнения.
+          </div>
+          <div *ngIf="myForm.submitted && myForm.controls.date1.errors?.pattern" class="invalid-feedback d-block">
+            Неверный формат даты. Пожалуйста используйте формат YYYY-MM-DD.
+          </div>
+
+          <label for="date2">Дата 2:</label>
+          <input type="text" class="form-control" [(ngModel)]="dateComparisonRule.Date2" name="date2" id="date4"
+                 placeholder="YYYY-MM-DD" required pattern="^\d{4}-\d{2}-\d{2}$">
+          <div *ngIf="myForm.submitted && myForm.controls.date2.errors?.required" class="invalid-feedback d-block">
+            Поле обязательно для заполнения.
+          </div>
+          <div *ngIf="myForm.submitted && myForm.controls.date2.errors?.pattern" class="invalid-feedback d-block">
+            Неверный формат даты. Пожалуйста используйте формат YYYY-MM-DD.
+          </div>
+        </div>
+
+        <div *ngIf="ruleType === 'isLeapYear'" class="form-group">
+
+          <label for="year">Год:</label>
+          <input type="number" class="form-control" [(ngModel)]="intRule.Value" name="year" id="year" placeholder="0">
+          <div *ngIf="myForm.submitted && myForm.controls.year.errors?.required" class="invalid-feedback d-block">
+            Поле обязательно для заполнения.
+          </div>
+        </div>
+
+        <div *ngIf="ruleType === 'getWeekDay'" class="form-group">
+
+          <label for="date">Дата:</label>
+          <input type="text" class="form-control" [(ngModel)]="dateRule.Date" name="date5" id="date5"
+                 placeholder="YYYY-MM-DD" required pattern="^\d{4}-\d{2}-\d{2}$">
+          <div *ngIf="myForm.submitted && myForm.controls.date5.errors?.required" class="invalid-feedback d-block">
+            Поле обязательно для заполнения.
+          </div>
+          <div *ngIf="myForm.submitted && myForm.controls.date5.errors?.pattern" class="invalid-feedback d-block">
+            Неверный формат даты. Пожалуйста используйте формат YYYY-MM-DD.
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3" [disabled]="!myForm.valid">Submit</button>
+
+        <div *ngIf="result" class="mt-4 alert alert-success">{{ result }}</div>
+      </form>
+    </div>
+  </div>
 </div>
-
-<div *ngIf="ruleType === 'addDays'">
-  <h2>Add Days</h2>
-  <label>Date:</label>
-  <input type="text" [(ngModel)]="dateRule.Date" placeholder="YYYY-MM-DD">
-  <br>
-  <label>Days:</label>
-  <input type="number" [(ngModel)]="dateRule.Days" placeholder="0">
-</div>
-
-<div *ngIf="ruleType === 'compareDates'">
-  <h2>Compare Dates</h2>
-  <label>Date 1:</label>
-  <input type="text" [(ngModel)]="dateComparisonRule.Date1" placeholder="YYYY-MM-DD">
-  <br>
-  <label>Date 2:</label>
-  <input type="text" [(ngModel)]="dateComparisonRule.Date2" placeholder="YYYY-MM-DD">
-</div>
-
-<div *ngIf="ruleType === 'daysBetweenDates'">
-  <h2>Days Between Dates</h2>
-  <label>Date 1:</label>
-  <input type="text" [(ngModel)]="dateComparisonRule.Date1" placeholder="YYYY-MM-DD">
-  <br>
-  <label>Date 2:</label>
-  <input type="text" [(ngModel)]="dateComparisonRule.Date2" placeholder="YYYY-MM-DD">
-</div>
-
-<div *ngIf="ruleType === 'isLeapYear'">
-  <h2>Is Leap Year</h2>
-  <label>Year:</label>
-  <input type="number" [(ngModel)]="intRule.Value" placeholder="0">
-</div>
-
-<div *ngIf="ruleType === 'getWeekDay'">
-  <h2>Get Weekday</h2>
-  <label>Date:</label>
-  <input type="text" [(ngModel)]="dateRule.Date" placeholder="YYYY-MM-DD">
-</div>
-
-<button (click)="onSubmit()">Submit</button>
-
-<div *ngIf="result">{{ result }}</div>

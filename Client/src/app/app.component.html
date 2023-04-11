@@ -1,38 +1,39 @@
-<body><div class="container">
-
+<body>
+<div class="container">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <button class="navbar-toggler" type="button"
-            data-bs-toggle="collapse" data-bs-target="#navbar-supported-content"
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-supported-content"
             aria-controls="navbar-supported-content" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbar-supported-content">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a routerLink="/login" class="nav-link" routerLinkActive="active" *ngIf="!auth.loggedIn">
+          <a class="nav-link" routerLink="/login" routerLinkActive="active" *ngIf="!auth.loggedIn">
             <i class="fa fa-sign-in"></i> Вход
           </a>
         </li>
         <li class="nav-item">
-          <a routerLink="/register" class="nav-link" routerLinkActive="active" *ngIf="!auth.loggedIn">
+          <a class="nav-link" routerLink="/register" routerLinkActive="active" *ngIf="!auth.loggedIn">
             <i class="fa fa-user-plus"></i> Регистрация
           </a>
-        </li>  <li class="nav-item">
-          <a routerLink="/math-rules" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/math-rules" routerLinkActive="active" *ngIf="auth.loggedIn">
             <i class="fa fa-user-plus"></i> Математические правила
           </a>
-        </li>  <li class="nav-item">
-          <a routerLink="/text-rules" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/text-rules" routerLinkActive="active" *ngIf="auth.loggedIn">
             <i class="fa fa-user-plus"></i> Текстовые правила
           </a>
         </li>
         <li class="nav-item">
-          <a routerLink="/date-rules" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
+          <a class="nav-link" routerLink="/date-rules" routerLinkActive="active" *ngIf="auth.loggedIn">
             <i class="fa fa-user-plus"></i> Правила с датами
           </a>
         </li>
         <li class="nav-item">
-          <a routerLink="/logout" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
+          <a class="nav-link" routerLink="/logout" routerLinkActive="active" *ngIf="auth.loggedIn">
             <i class="fa fa-user-plus"></i> Выход
           </a>
         </li>
@@ -43,5 +44,4 @@
   <router-outlet></router-outlet>
 
 </div>
-
 </body>

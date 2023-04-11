@@ -1,35 +1,95 @@
-<div>
-  <label for="ruleType">Rule Type:</label>
-  <select id="ruleType" name="ruleType" [(ngModel)]="ruleType">
-    <option value="substring">Substring</option>
-    <option value="tolower">ToLower</option>
-    <option value="toupper">ToUpper</option>
-    <option value="replace">Replace</option>
-  </select>
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form #myForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
 
-  <label for="originalString">Original String:</label>
-  <input type="text" id="originalString" name="originalString" [(ngModel)]="originalString">
+        <div class="form-group">
+          <label for="ruleType">Тип правила:</label>
+          <select id="ruleType" name="ruleType" [(ngModel)]="ruleType" required class="form-control">
+            <option value="" disabled>Выберите тип правила</option>
+            <option value="substring">Найди подстроку</option>
+            <option value="tolower">Перевести в нижний регистр</option>
+            <option value="toupper">Перевести в верхний регистр</option>
+            <option value="replace">Заменить символ</option>
+          </select>
+          <div *ngIf="myForm.submitted && myForm.controls.ruleType.errors?.required" class="text-danger">
+            Тип правила обязателен для заполнения.
+          </div>
+        </div>
 
-  <div *ngIf="ruleType === 'substring'">
-    <label for="startIndex">Start Index:</label>
-    <input type="number" id="startIndex" name="startIndex" [(ngModel)]="startIndex">
+        <div class="form-group">
+          <label for="originalString">Оригинальная строка:</label>
+          <input type="text" id="originalString" name="originalString" [(ngModel)]="originalString" required
+                 class="form-control" minlength="2">
+          <div *ngIf="myForm.submitted && myForm.controls.originalString.errors?.required" class="text-danger">
+            Поле обязательно для заполнения.
+          </div>
+          <div *ngIf="myForm.submitted && myForm.controls.originalString.errors?.minlength" class="text-danger">
+            Длина оригинальной строки должна быть не менее двух символов.
+          </div>
+        </div>
 
-    <label for="length">Length:</label>
-    <input type="number" id="length" name="length" [(ngModel)]="length">
-  </div>
+        <div *ngIf="ruleType === 'substring'" class="sub-form">
+          <div class="form-group">
+            <label for="startIndex">Начальный индекс:</label>
+            <input type="number" id="startIndex" name="startIndex" [(ngModel)]="startIndex" required
+                   class="form-control" min="0" max="{{originalString.length - 1}}">
+            <div *ngIf="myForm.submitted && myForm.controls.startIndex.errors?.required" class="text-danger">
+              Поле обязательно для заполнения.
+            </div>
+            <div
+              *ngIf="myForm.submitted && (myForm.controls.startIndex.errors?.min || myForm.controls.startIndex.errors?.max)"
+              class="text-danger">
+              Начальный индекс должен быть больше 0 и меньше {{originalString.length - 1}}.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="length">Длина:</label>
+            <input type="number" id="length" name="length" [(ngModel)]="length" required
+                   class="form-control" min="1" max="{{originalString.length - startIndex}}">
+            <div *ngIf="myForm.submitted && myForm.controls.length.errors?.required" class="text-danger">
+              Поле обязательно для заполнения.
+            </div>
+            <div *ngIf="myForm.submitted && (myForm.controls.length.errors?.min || myForm.controls.length.errors?.max)"
+                 class="text-danger">
+              Длина должна быть больше 1 и меньше {{originalString.length - startIndex}}.
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="ruleType === 'replace'" class="sub-form">
+          <div class="form-group">
+            <label for="oldValue">Старое значение:</label>
+            <input type="text" id="oldValue" name="oldValue" [(ngModel)]="oldValue" required class="form-control"
+                   minlength="1">
+            <div *ngIf="myForm.submitted && myForm.controls.oldValue.errors?.required" class="text-danger">
+              Поле обязательно для заполнения.
+            </div>
+            <div *ngIf="myForm.submitted && myForm.controls.oldValue.errors?.minlength" class="text-danger">
+              Длина старого значения должно быть не менее одного символа.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="newValue">Новое значение:</label>
+            <input type="text" id="newValue" name="newValue" [(ngModel)]="newValue" required class="form-control"
+                   minlength="1">
+            <div *ngIf="myForm.submitted && myForm.controls.newValue.errors?.required" class="text-danger">
+              Поле обязательно для заполнения.
+            </div>
+            <div *ngIf="myForm.submitted && myForm.controls.newValue.errors?.minlength" class="text-danger">
+              Длина нового значения должно быть не менее одного символа.
+            </div>
+          </div>
+        </div>
 
 
-  <div *ngIf="ruleType === 'replace'">
-    <label for="oldValue">Old Value:</label>
-    <input type="text" id="oldValue" name="oldValue" [(ngModel)]="oldValue">
+        <button type="submit" class="btn btn-primary mt-3" [disabled]="!myForm.valid">Ввод</button>
 
-    <label for="newValue">New Value:</label>
-    <input type="text" id="newValue" name="newValue" [(ngModel)]="newValue">
-  </div>
+        <div *ngIf="result" class="mt-4 alert alert-success">{{ result }}</div>
 
-  <button (click)="onSubmit()">Submit</button>
-
-  <div *ngIf="result !== null">
-    <p>Result: {{ result }}</p>
+      </form>
+    </div>
   </div>
 </div>

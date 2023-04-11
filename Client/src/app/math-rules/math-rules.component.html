@@ -1,31 +1,55 @@
-<div>
-  <select [(ngModel)]="ruleType">
-    <option value="addition">Addition</option>
-    <option value="subtraction">Subtraction</option>
-    <option value="multiplication">Multiplication</option>
-    <option value="division">Division</option>
-    <option value="max">Max</option>
-    <option value="min">Min</option>
-  </select>
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-sm-6">
+      <form #myForm="ngForm" (ngSubmit)="submit()">
+        <div class="form-group">
+          <label for="ruleType">Тип правила:</label>
+          <select class="form-select" id="ruleType" [(ngModel)]="ruleType" name="ruleType" required>
+            <option value="" disabled>Выберите тип правила</option>
+            <option value="addition">Сложение</option>
+            <option value="subtraction">Вычитание</option>
+            <option value="multiplication">Умножение</option>
+            <option value="division">Деление</option>
+            <option value="max">Максимальное значение</option>
+            <option value="min">Минимальное значение</option>
+          </select>
+          <div *ngIf="myForm.submitted && myForm.controls.ruleType.errors?.required" class="text-danger">
+            Тип правила обязателен для заполнения.
+          </div>
+        </div>
 
-  <div *ngIf="ruleType == 'addition' || ruleType == 'subtraction' || ruleType == 'multiplication' || ruleType == 'division'">
-    <label for="number1">Number 1:</label>
-    <input type="number" id="number1" [(ngModel)]="number1">
+        <div *ngIf="ruleType == 'addition' || ruleType == 'subtraction' || ruleType == 'multiplication' || ruleType == 'division'"
+             class="form-group">
+          <label for="number1">Число 1:</label>
+          <input type="number" class="form-control" id="number1" [(ngModel)]="number1" name="number1" required>
+          <div *ngIf="myForm.submitted && myForm.controls.number1.errors?.required" class="text-danger">
+            Поле обязательно для заполнения.
+          </div>
 
-    <label for="number2">Number 2:</label>
-    <input type="number" id="number2" [(ngModel)]="number2">
-  </div>
+          <label for="number2">Число 2:</label>
+          <input type="number" class="form-control" id="number2" [(ngModel)]="number2" name="number2" required>
+          <div *ngIf="myForm.submitted && myForm.controls.number2.errors?.required" class="text-danger">
+            Поле обязательно для заполнения.
+          </div>
+        </div>
 
-  <div *ngIf="ruleType == 'max' || ruleType == 'min'">
-    <label for="numbers">Numbers (comma-separated):</label>
-    <input type="text" id="numbers" [(ngModel)]="numbers">
-  </div>
+        <div *ngIf="ruleType == 'max' || ruleType == 'min'" class="form-group">
+          <label for="numbers">Числа (через запятую):</label>
+          <input type="text" class="form-control" id="numbers" [(ngModel)]="numbers" name="numbers" required pattern="^[0-9,]+$">
+          <div *ngIf="myForm.submitted && myForm.controls.numbers.errors?.required" class="text-danger">
+            Поле обязательно для заполнения.
+          </div>
+          <div *ngIf="myForm.submitted && myForm.controls.numbers.errors?.pattern" class="text-danger">
+            Неправильный ввод. Разрешены только цифры и запятые.
+          </div>
+        </div>
 
+        <button type="submit" class="btn btn-primary mt-3" [disabled]="!myForm.valid">Ввод</button>
 
+      </form>
 
-  <button (click)="submit()">Submit</button>
+      <div *ngIf="result" class="mt-4 alert alert-success">{{ result }}</div>
+    </div>
 
-  <div *ngIf="result !== null">
-    <p>Result: {{ result }}</p>
   </div>
 </div>
